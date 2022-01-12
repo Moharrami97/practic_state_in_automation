@@ -10,8 +10,16 @@ class Message:
         self.sender = sender
         self.flow = [sender]
 
+    @property
+    def current(self):
+        return self.flow[-1]
+
     def send(self, to_use):
-        pass
+        if to_use.__class__ not in self.current.allowed:
+            print(f"{self.current.__class__} is not allowed to send email to {to_use.__class__}")
+        else:
+            self.flow.append(to_use)
+            print(f"message send to {to_use.__class__}")
 
 
 class AbstractUSer(ABC):
@@ -49,3 +57,8 @@ if __name__ == "__main__":
     client = Client()
 
     message = Message("Issue #123", "Issue description", client)
+
+    message.send(opt)
+    message.send(spr)
+    message.send(inm)
+    message.send(mnd)
