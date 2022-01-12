@@ -60,5 +60,5 @@ if __name__ == "__main__":
 
     message.send(opt)
     message.send(spr)
-    message.send(inm)
+    message.send(client)
     message.send(mnd)
